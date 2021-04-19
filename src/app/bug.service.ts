@@ -14,4 +14,21 @@ export class BugService {
     });
   }
 
+  getBugs() {
+    const httpHeaders = new HttpHeaders();
+    const endpointURL = 'http://localhost:8080/bug/'
+    httpHeaders.append('content-type', 'application/json');
+    return this.http.get(endpointURL, { headers: httpHeaders });
+  }
+
+  getBug(endpointURL) {
+
+    const httpHeaders = new HttpHeaders();
+    httpHeaders.append('content-type', 'application/json');
+    return this.http.get(endpointURL, { headers: httpHeaders });
+
+  }
+
+
+
 }

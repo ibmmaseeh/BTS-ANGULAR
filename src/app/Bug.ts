@@ -8,7 +8,7 @@ export class Bug {
   status: STATUS;
   buildVersion: string;
   projectId: string;
-  submitOnDate: Date = new Date();
+  submitOnDate: Date;
   module: string;
   description: string;
   title: string;

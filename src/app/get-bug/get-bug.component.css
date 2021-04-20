@@ -6,3 +6,28 @@
       width: 100%;
   }
 }
+
+
+#titlewidth{
+  column-width: 800px;
+  word-wrap:break-word
+}
+
+
+thead{
+  background-color: #007bff;
+
+}
+
+thead td{
+  color: white;
+}
+
+
+
+
+
+
+
+
+

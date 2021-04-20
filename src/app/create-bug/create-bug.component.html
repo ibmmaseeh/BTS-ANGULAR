@@ -45,14 +45,16 @@
       <div class="form-group row">
         <label for="colFormLabelLg" class="col-lg-2 col-form-label control-label">Title</label>
         <div class="col">
-          <textarea minlength="5" maxlength="200" class="form-control" placeholder="Title in less than 200 characters"
+          <textarea  ngtrim="false" minlength="5" maxlength="200" class="form-control" placeholder="Title in less than 200 characters"
             id="title" [(ngModel)]="bug.title" name="title" required></textarea>
+            <span style="font-size: small;">{{200 - bug.title.length}} characters left</span>
         </div>
 
         <label for="colFormLabelLg" class="col-lg-2 col-form-label control-label">Description</label>
         <div class="col">
-          <textarea maxlength="1000" class="form-control" placeholder="Describe in less than 1000 characters"
+          <textarea  ng-trim="false" maxlength="1000" class="form-control" placeholder="Describe in less than 1000 characters"
             id="description" [(ngModel)]="bug.description" name="description" required></textarea>
+            <span style="font-size: small;">{{1000 - bug.description.length}} characters left</span>
         </div>
 
       </div>
@@ -65,7 +67,7 @@
         <div class="col">
 
           <select class="form-control" id="priority" [(ngModel)]="bug.priority" name="priority" required>
-            <option value="" disabled selected>Select Priority</option>
+            <option disabled selected>Select Priority</option>
             <option>LOW</option>
             <option>MEDIUM</option>
             <option>HIGH</option>
@@ -76,8 +78,7 @@
 
         <div class="col">
           <select class="form-control" id="status" [(ngModel)]="bug.status" name="status" required>
-            <option value="" disabled selected>Select Option</option>
-            <option>NEW</option>
+            <option selected>NEW</option>
             <option>OPEN</option>
             <option>ASSIGNED</option>
             <option>FIXED</option>
@@ -102,7 +103,7 @@
         <label for="colFormLabelLg" class="col-lg-2 col-form-label control-label">Type</label>
         <div class="col">
           <select class="form-control" id="type" [(ngModel)]="bug.type" name="type" required>
-            <option value="" disabled selected>Select Type</option>
+            <option  disabled selected>Select Type</option>
             <option>PROBLEM_REQUEST</option>
             <option>CHANGE_REQUEST</option>
           </select>

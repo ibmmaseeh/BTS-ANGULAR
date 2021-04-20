@@ -17,7 +17,7 @@
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="../index.html">Bug Tracking System</a>
+    <a class="navbar-brand" routerLink="/" routerLinkActive="active">Bug Tracking System</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -26,13 +26,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="../html/createBug.html">Create Bug <span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="/createBug" routerLinkActive="active">Create Bug <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="editBug.html">Edit Bug <span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="/updateBug" routerLinkActive="active" >Edit Bug <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="contactUs.html">Contact Us<span class="sr-only">(current)</span></a>
+          <a class="nav-link" routerLink="/help" routerLinkActive="active">Contact Us<span class="sr-only">(current)</span></a>
         </li>
 
 
@@ -50,14 +50,31 @@
       </div>
 
       <div class="col-sm-6">
-        <input type="text" class="form-control" placeholder="Enter Bug Status" id="bugStatus" [(ngModel)]="bug.status"
-          name="bugStatus" required>
+        <select class="form-control" id="bugStatus" placeholder="Choose Bug Status"[(ngModel)]="bug.status" name="bugStatus" required>
+          <option value="" disabled selected>Select Status</option>
+          <option>NEW</option>
+          <option>OPEN</option>
+          <option>ASSIGNED</option>
+          <option>FIXED</option>
+          <option>PENDING_RETEST</option>
+          <option>RETEST</option>
+          <option>REOPEN</option>
+          <option>VERIFIED</option>
+          <option>CLOSED</option>
+          <option>NOT_A_BUG</option>
+          <option>REJECTED</option>
+          <option>DUPLICATE</option>
+          <option>DEFERRED</option>
+          <option>COULDNT_REPRODUCE</option>
+          <option>NEED_MORE_INFORMATION</option>
+        </select>
       </div>
+
 
     </div>
     <div>
       <div class="text-center" style="margin-top: 50px;">
-        <button type="button" class="btn btn-outline-primary col-sm-6"   (click)="getBug()"> Get Bug</button>
+        <button type="button" class="btn btn-outline-primary col-sm-5"   (click)="getBug()"> Get Bug</button>
       </div>
 
     </div>
@@ -87,17 +104,17 @@
           <ng-container *ngFor="let bug of bugList,index as i">
 
             <tr>
-              <td>{{bug.title}}</td>
-              <td>{{bug.description}}</td>
-              <td>{{bug.status}}</td>
-              <td>{{bug.priority}}</td>
-              <td>{{bug.type}}</td>
-              <td>{{bug.submitOnDate}}</td>
-              <td>{{bug.buildVersion}}</td>
-              <td>{{bug.projectId}}</td>
-              <td>{{bug.module}}</td>
-              <td>{{bug.product}}</td>
-              <td>{{bug.etaDate}}</td>
+              <td scope="col" style="border: 2px solid #000000;">{{bug.title}}</td>
+              <td scope="col" style="border: 2px solid #000000;">{{bug.description}}</td>
+              <td scope="col" style="border: 2px solid #000000;">{{bug.status}}</td>
+              <td scope="col" style="border: 2px solid #000000;">{{bug.priority}}</td>
+              <td scope="col" style="border: 2px solid #000000;">{{bug.type}}</td>
+              <td scope="col" style="border: 2px solid #000000;">{{bug.submitOnDate}}</td>
+              <td scope="col" style="border: 2px solid #000000;">{{bug.buildVersion}}</td>
+              <td scope="col" style="border: 2px solid #000000;">{{bug.projectId}}</td>
+              <td scope="col" style="border: 2px solid #000000;">{{bug.module}}</td>
+              <td scope="col" style="border: 2px solid #000000;">{{bug.product}}</td>
+              <td scope="col" style="border: 2px solid #000000;">{{bug.etaDate}}</td>
             </tr>
           </ng-container>
 

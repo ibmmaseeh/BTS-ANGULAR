@@ -13,5 +13,5 @@ export class Bug {
   description: string;
   title: string;
   product: string;
-  etaDate: Date = new Date();
+  etaDate: Date;
 }

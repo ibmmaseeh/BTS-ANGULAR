@@ -80,20 +80,20 @@
         <div class="col">
           <select class="form-control" id="status" [(ngModel)]="bug.status" name="status" required>
             <option selected>NEW</option>
-            <option>OPEN</option>
-            <option>ASSIGNED</option>
-            <option>FIXED</option>
-            <option>PENDING_RETEST</option>
-            <option>RETEST</option>
-            <option>REOPEN</option>
-            <option>VERIFIED</option>
-            <option>CLOSED</option>
-            <option>NOT_A_BUG</option>
-            <option>REJECTED</option>
-            <option>DUPLICATE</option>
-            <option>DEFERRED</option>
-            <option>COULDNT_REPRODUCE</option>
-            <option>NEED_MORE_INFORMATION</option>
+            <option disabled>OPEN</option>
+            <option disabled>ASSIGNED</option>
+            <option disabled>FIXED</option>
+            <option disabled>PENDING_RETEST</option>
+            <option disabled>RETEST</option>
+            <option disabled>REOPEN</option>
+            <option disabled>VERIFIED</option>
+            <option disabled>CLOSED</option>
+            <option disabled>NOT_A_BUG</option>
+            <option disabled>REJECTED</option>
+            <option disabled>DUPLICATE</option>
+            <option disabled>DEFERRED</option>
+            <option disabled>COULDNT_REPRODUCE</option>
+            <option disaled>NEED_MORE_INFORMATION</option>
           </select>
         </div>
       </div>
@@ -116,7 +116,7 @@
 
         <div class="col">
           <input class="custom-select custom-select-md " type="date" id="submitOnDate" [(ngModel)]="bug.submitOnDate"
-            name="submitOnDate" required>
+            name="submitOnDate" required >
         </div>
 
       </div>

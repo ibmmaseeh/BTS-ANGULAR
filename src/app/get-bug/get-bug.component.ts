@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BugService } from '../bug.service';
 import { Bug } from '../Bug';
 import { STATUS } from '../STATUS';
+import { TruncatePipe } from '../truncate.pipe';
+
 
 @Component({
   selector: 'app-get-bug',
@@ -14,6 +16,7 @@ export class GetBugComponent implements OnInit {
   bugList: any;
   searchElement: any;
   responseList: Boolean;
+  toggleEllipses:false;
   getBug() {
     let bugStatus = (<HTMLInputElement>document.getElementById('bugStatus')).value;
     let bugTitle = (<HTMLInputElement>document.getElementById('bugTitle')).value;
@@ -24,13 +27,18 @@ export class GetBugComponent implements OnInit {
       endpointURL = endpointURL + 'status/' + bugStatus;
       this.bugService.getBug(endpointURL).subscribe(response => {
         this.bugList = response;
-        console.log(response);
-        alert('Bug Found!')
+        if(response!=null){
+          console.log(response);
+          alert('Bug Found!')
+        }
+        else{
+         alert("Bug with given status " + bugStatus + "not found!!");
+        }
 
       },
         error => {
           console.log(error);
-          alert(error.statusText);
+          alert("An Error has occured.");
 
         }
       )
@@ -39,8 +47,14 @@ export class GetBugComponent implements OnInit {
       endpointURL = endpointURL + 'title/' + bugTitle;
       this.bugService.getBug(endpointURL).subscribe(response => {
         this.bugList = [response];
-        console.log(response);
-        alert('Bug Found')
+        if (response!=null){
+          console.log(response);
+          alert('Bug Found!')
+        }
+        else{
+          alert("Bug with given title " + bugTitle + " not found!!");
+
+        }
 
       },
         error => {

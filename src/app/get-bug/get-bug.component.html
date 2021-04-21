@@ -104,17 +104,24 @@
           <ng-container *ngFor="let bug of bugList,index as i">
 
             <tr>
-              <td  id="titlewidth" scope="col" style="border: 2px solid #000000;">{{bug.title}}</td>
+              <td scope="col" style="border: 2px solid #000000;" id="titlewidth">{{bug.title|truncate:[20]}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.description}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.status|titlecase}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.priority|titlecase}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.type|titlecase}}</td>
-              <td scope="col" style="border: 2px solid #000000;">{{bug.submitOn|date}}</td>
+              <td scope="col" style="border: 2px solid #000000;">{{bug.submitOnDate|date}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.buildVersion}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.projectId}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.module}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.product}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.etaDate|date}}</td>
+              <!-- <td [hidden]="bug.expanded == true"><button (click)="keyfield.expanded = true">read more</button></td>
+              <td [@detailExpand]="bug.expanded ? 'expanded' : 'collapsed'">
+                  <p>{{keyfield.expandedContent}}</p>
+                  <button (click)="keyfield.expanded = false">read less</button>
+              </td> -->
+
+
             </tr>
           </ng-container>
 

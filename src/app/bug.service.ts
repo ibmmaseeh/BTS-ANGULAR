@@ -28,6 +28,10 @@ export class BugService {
     return this.http.get(endpointURL, { headers: httpHeaders });
 
   }
+  updateBug(bugId, updatedBody) {
+    const endpointURL = 'http://localhost:8080/bug/' + bugId;
+    return this.http.put(endpointURL, updatedBody);
+  }
 
 
 

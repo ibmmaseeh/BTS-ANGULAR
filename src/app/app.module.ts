@@ -9,6 +9,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { UpdateBugComponent } from './update-bug/update-bug.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { TruncatePipe } from './truncate.pipe';
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+
+
 
 const appRoutes: Routes  = [
   {path:'',component: HomeComponent},
@@ -25,7 +29,8 @@ const appRoutes: Routes  = [
     GetBugComponent,
     HomeComponent,
     UpdateBugComponent,
-    ContactUsComponent
+    ContactUsComponent,
+     TruncatePipe
   ],
   imports: [ RouterModule.forRoot(
     appRoutes,

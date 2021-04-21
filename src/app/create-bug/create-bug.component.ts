@@ -16,6 +16,11 @@ export class CreateBugComponent implements OnInit {
 
   constructor(private bugService: BugService) { }
   saveBug() {
+    let createBug=(<HTMLInputElement>document.getElementById('createBug'))
+    if(!createBug.checkValidity()){
+      alert('form is invalid..!');
+      return;
+    }
     const promise = this.bugService.saveBug(this.bug);
     promise.subscribe(response => {
       console.log(response);

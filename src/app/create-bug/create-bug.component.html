@@ -45,9 +45,10 @@
       <div class="form-group row">
         <label for="colFormLabelLg" class="col-lg-2 col-form-label control-label">Title</label>
         <div class="col">
-          <textarea  ngtrim="false" minlength="5" maxlength="200" class="form-control" placeholder="Title in less than 200 characters"
+          <textarea type="text" ngtrim="false" minlength="5" maxlength="200" class="form-control" placeholder="Title in less than 200 characters"
             id="title" [(ngModel)]="bug.title" name="title" required></textarea>
-            <span style="font-size: small;">{{200 - bug.title.length}} characters left</span>
+
+            <span style="font-size: small;"> {{200-bug.title.length}} characters left</span>
         </div>
 
         <label for="colFormLabelLg" class="col-lg-2 col-form-label control-label">Description</label>
@@ -182,12 +183,4 @@
 
 
 </body>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
 </html>

@@ -22,25 +22,34 @@ export class BugService {
     return this.http.get(endpointURL, { headers: httpHeaders });
   }
 
-  getBug(endpointURL) {
+  // getBug(endpointURL) {
 
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.append('content-type', 'application/json');
-    return this.http.get(endpointURL, { headers: httpHeaders });
+  //   const httpHeaders = new HttpHeaders();
+  //   httpHeaders.append('content-type', 'application/json');
+  //   return this.http.get(endpointURL, { headers: httpHeaders });
 
-  }
+  // }
+
   updateBug(bugId, updatedBody) {
     const endpointURL = 'http://localhost:8080/bug/' + bugId;
     return this.http.put(endpointURL, updatedBody);
   }
   getBugbyStatusAndTitle(status:string,title:string){
-    const endpointURL = 'http://localhost:8080/bug/search' + title;
+    const endpointURL = 'http://localhost:8080/bug/search/' + title;
     const httpHeaders = new HttpHeaders();
     httpHeaders.append('content-type', 'application/json');
     return this.http.get(endpointURL+'?status='+status, { headers: httpHeaders });
-
-
   }
+
+  getBugByName(title: string) {
+    const endpointURL = 'http://localhost:8080/bug/'
+    return this.http.get(endpointURL + 'title/' + title);
+  }
+  getBugByStatus(status: string) {
+    const endpointURL = 'http://localhost:8080/bug/'
+    return this.http.get(endpointURL + 'status/' + status);
+  }
+
 
   deleteBug(bugId){
     const endpointURL = 'http://localhost:8080/bug/' + bugId;

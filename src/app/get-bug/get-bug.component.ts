@@ -21,6 +21,23 @@ export class GetBugComponent implements OnInit {
   bugArray:any;
   toggleEllipses:false;
 
+
+
+  deleteBug(bugId){
+    this.bugService.deleteBug(bugId).subscribe(response => {
+      this.bugList = response;
+      console.log(response);
+      alert("Bug Deleted!")
+      this.getBugs();
+    },
+      error => {
+        console.log(error);
+        alert("Error Happened!");
+
+      }
+    )
+  }
+
   getBug() {
     let bugStatus = (<HTMLInputElement>document.getElementById('bugStatus')).value;
     let bugTitle = (<HTMLInputElement>document.getElementById('bugTitle')).value;
@@ -70,32 +87,32 @@ export class GetBugComponent implements OnInit {
     }
   }
 
-  getBugbyStatusAndTitle() {
-    let bugStatus = (<HTMLInputElement>document.getElementById('bugStatus')).value;
-    let bugTitle = (<HTMLInputElement>document.getElementById('bugTitle')).value;
-    let endpointURL='http://localhost:8080/bug/search';
+  // getBugbyStatusAndTitle() {
+  //   let bugStatus = (<HTMLInputElement>document.getElementById('bugStatus')).value;
+  //   let bugTitle = (<HTMLInputElement>document.getElementById('bugTitle')).value;
+  //   let endpointURL='http://localhost:8080/bug/search';
 
 
-    if (bugStatus!=null&&bugTitle!=null) {
-      const promise = this.bugService.getBugbyStatusAndTitle(endpointURL);
+  //   if (bugStatus!=null&&bugTitle!=null) {
+  //     const promise = this.bugService.getBugbyStatusAndTitle(endpointURL);
 
-      promise.subscribe(response => {
-        this.bugList = response;
-        if(response==null){
+  //     promise.subscribe(response => {
+  //       this.bugList = response;
+  //       if(response==null){
 
-        alert("bad data");
+  //       alert("bad data");
 
 
-        }
-        else{
-          alert("Please enter both fields");
-        }
-      },
-        (        error: any) => {
-          console.log(error);
-          alert('error happened..')
-        })
-    }
+  //       }
+  //       else{
+  //         alert("Please enter both fields");
+  //       }
+  //     },
+  //       (        error: any) => {
+  //         console.log(error);
+  //         alert('error happened..')
+  //       })
+  //   }
 //   else  if (bugTitle) {
 //       if (bugTitle) {
 //         const promise = this.bugService.getBug(bugTitle);
@@ -148,34 +165,47 @@ export class GetBugComponent implements OnInit {
 //         })
 //     }
 // }
-  else{
-    const observable=this.bugService.getBugs();
-    observable.subscribe(response=>{
-      console.log(response);
-      this.bugArray=response})
-  }
-}
+  // else{
+  //   const observable=this.bugService.getBugs();
+  //   observable.subscribe(response=>{
+  //     console.log(response);
+  //     this.bugArray=response})
+  // }
+// }
   // ngOnInit(): void {
 
   // }
-
-
-
-
-
-
-
-
-
-
-
-
-  ngOnInit(): void {
-    const observable=this.bugService.getBugs();
-    observable.subscribe(response=>{
+  getBugs() {
+    this.bugService.getBugs().subscribe(response => {
+      this.bugList = response;
       console.log(response);
-    this.bugList=response})
+    },
+      error => {
+        console.log(error);
+        alert(error.statusText);
+
+      }
+    )
    }
 
+  ngOnInit(): void {
+    this.getBugs();
   }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -48,7 +48,7 @@
     </div>
     <div>
       <div class="text-center" style="margin-top: 50px;">
-        <button type="button" class="btn btn-outline-primary col-sm-5"   (click)="getBugbyStatusAndTitle()"> Get Bug</button>
+        <button type="button" class="btn btn-outline-primary col-sm-5"   (click)="getBug()"> Get Bug</button>
       </div>
 
     </div>
@@ -71,11 +71,12 @@
           <td scope="col" style="border: 2px solid #000000;">Module</td>
           <td scope="col" style="border: 2px solid #000000;">Product</td>
           <td scope="col" style="border: 2px solid #000000;">ETA</td>
+          <td scope="col" style="border: 2px solid #000000;">Action</td>
 
 
         </thead>
         <tbody id="bugsTable" style="border: 2px solid #000000">
-          <ng-container *ngFor="let bug of bugList,index as i">
+          <ng-container *ngFor="let bug of bugList">
 
             <tr>
               <td scope="col" style="border: 2px solid #000000;" id="titlewidth">{{bug.title|truncate:[20]}}</td>
@@ -94,6 +95,7 @@
                   <p>{{keyfield.expandedContent}}</p>
                   <button (click)="keyfield.expanded = false">read less</button>
               </td> -->
+              <td scope="col" style="border: 2px solid #000000;"><button type="button" class="btn btn-outline-danger" (click)='this.deleteBug(bug.id)'>Delete</button></td>
 
 
             </tr>

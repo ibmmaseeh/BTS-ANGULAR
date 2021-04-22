@@ -41,6 +41,11 @@ export class BugService {
 
   }
 
+  deleteBug(bugId){
+    const endpointURL = 'http://localhost:8080/bug/' + bugId;
+    return this.http.delete(endpointURL);
+  }
+
 
 
 

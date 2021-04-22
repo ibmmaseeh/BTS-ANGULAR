@@ -5,6 +5,8 @@ import { STATUS } from '../STATUS';
 import { TruncatePipe } from '../truncate.pipe';
 
 
+
+
 @Component({
   selector: 'app-get-bug',
   templateUrl: './get-bug.component.html',
@@ -16,7 +18,9 @@ export class GetBugComponent implements OnInit {
   bugList: any;
   searchElement: any;
   responseList: Boolean;
+  bugArray:any;
   toggleEllipses:false;
+
   getBug() {
     let bugStatus = (<HTMLInputElement>document.getElementById('bugStatus')).value;
     let bugTitle = (<HTMLInputElement>document.getElementById('bugTitle')).value;
@@ -64,24 +68,114 @@ export class GetBugComponent implements OnInit {
         }
       )
     }
-
-
-
   }
+
+  getBugbyStatusAndTitle() {
+    let bugStatus = (<HTMLInputElement>document.getElementById('bugStatus')).value;
+    let bugTitle = (<HTMLInputElement>document.getElementById('bugTitle')).value;
+    let endpointURL='http://localhost:8080/bug/search';
+
+
+    if (bugStatus!=null&&bugTitle!=null) {
+      const promise = this.bugService.getBugbyStatusAndTitle(endpointURL);
+
+      promise.subscribe(response => {
+        this.bugList = response;
+        if(response==null){
+
+        alert("bad data");
+
+
+        }
+        else{
+          alert("Please enter both fields");
+        }
+      },
+        (        error: any) => {
+          console.log(error);
+          alert('error happened..')
+        })
+    }
+//   else  if (bugTitle) {
+//       if (bugTitle) {
+//         const promise = this.bugService.getBug(bugTitle);
+//         promise.subscribe(response => {
+//           this.bugList= response;
+//           console.log(this.bugList);
+//           if(this.bugList.length){
+//             this.bugList.forEach((bug: Bug) => {
+//               let etaDate = bug.etaDate;
+//               if (etaDate) {
+//                 let finalEtaDate = etaDate.split('T')[0];
+//                 bug.etaDate = finalEtaDate;
+//               }
+//               this.bugArray=this.bugList;
+//             });
+//           }
+//           else{
+//             alert("Bug Name not in records");
+//           }
+//         },
+//           error => {
+//             console.log(error);
+//             alert('error happened..')
+//           })
+//       }
+//   }
+//   else  if (bugStatus) {
+//     if (bugStatus) {
+//       const promise = this.bugService.getBug(bugStatus);
+//       promise.subscribe(response => {
+//         this.bugList = response;
+//         console.log(this.bugList);
+//         if(this.bugList.length){
+//           this.bugList.forEach((bug: Bug) => {
+//             let etaDate = bug.etaDate;
+//             if (etaDate) {
+//               let finalEtaDate = etaDate.split('T')[0];
+//               bug.etaDate = finalEtaDate;
+//             }
+//             this.bugArray=this.bugList;
+//           });
+//         }
+//         else{
+//           alert("Bug Status not in records");
+//         }
+//       },
+//         error => {
+//           console.log(error);
+//           alert('error happened..')
+//         })
+//     }
+// }
+  else{
+    const observable=this.bugService.getBugs();
+    observable.subscribe(response=>{
+      console.log(response);
+      this.bugArray=response})
+  }
+}
+  // ngOnInit(): void {
+
+  // }
+
+
+
+
+
+
+
+
+
+
 
 
   ngOnInit(): void {
-    this.bugService.getBugs().subscribe(response => {
-      this.bugList = response;
+    const observable=this.bugService.getBugs();
+    observable.subscribe(response=>{
       console.log(response);
+    this.bugList=response})
+   }
 
-    },
-      error => {
-        console.log(error);
-        alert(error.statusText);
-
-      }
-    )
   }
 
-}

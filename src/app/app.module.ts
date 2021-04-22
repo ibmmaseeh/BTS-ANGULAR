@@ -10,7 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { UpdateBugComponent } from './update-bug/update-bug.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { TruncatePipe } from './truncate.pipe';
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { HeaderComponent } from "./header/header.component";
+
 
 
 
@@ -25,12 +26,13 @@ const appRoutes: Routes  = [
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
     CreateBugComponent,
     GetBugComponent,
     HomeComponent,
     UpdateBugComponent,
     ContactUsComponent,
-     TruncatePipe
+    TruncatePipe
   ],
   imports: [ RouterModule.forRoot(
     appRoutes,

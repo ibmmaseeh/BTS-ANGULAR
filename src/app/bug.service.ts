@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Bug } from './Bug';
+import { STATUS } from './STATUS';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,16 @@ export class BugService {
     const endpointURL = 'http://localhost:8080/bug/' + bugId;
     return this.http.put(endpointURL, updatedBody);
   }
+  getBugbyStatusAndTitle(endpointURL){
+    const httpHeaders = new HttpHeaders();
+    httpHeaders.append('content-type', 'application/json');
+    return this.http.get(endpointURL, { headers: httpHeaders });
+
+
+  }
+
+
+
 
 
 

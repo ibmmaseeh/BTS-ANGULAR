@@ -18,8 +18,9 @@ export class GetBugComponent implements OnInit {
   bugList: any;
   searchElement: any;
   responseList: Boolean;
-  bugArray:any;
+  bugArray: Bug[]=[];
   toggleEllipses:false;
+
 
 
 
@@ -86,6 +87,12 @@ export class GetBugComponent implements OnInit {
       )
     }
   }
+
+
+
+
+
+
 
   // getBugbyStatusAndTitle() {
   //   let bugStatus = (<HTMLInputElement>document.getElementById('bugStatus')).value;
@@ -175,6 +182,51 @@ export class GetBugComponent implements OnInit {
   // ngOnInit(): void {
 
   // }
+getBugbyStatusAndTitle(){
+
+  let bugStatus = (<HTMLInputElement>document.getElementById('bugStatus')).value;
+  let bugTitle = (<HTMLInputElement>document.getElementById('bugTitle')).value;
+  let endpointURL = 'http://localhost:8080/bug/';
+
+  if(bugStatus&&bugTitle){
+    this.bugService.getBugbyStatusAndTitle(bugStatus,bugTitle).subscribe(response => {
+      this.bugList = response;
+      console.log(response);
+      if (this.bugList.length) {
+        alert('bug found');
+
+      }
+      else {
+        alert("No Bug with Name : " + bugTitle + " and Status : " + bugStatus + " found");
+        this.bugArray = [];
+      }
+    },
+      error => {
+        console.log(error);
+        alert(error.statusText);
+
+      }
+    )
+
+
+  }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
   getBugs() {
     this.bugService.getBugs().subscribe(response => {
       this.bugList = response;

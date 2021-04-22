@@ -23,19 +23,30 @@ export class UpdateBugComponent implements OnInit {
         console.log(this.bugList);
         if(this.bugList){
             this.bug=this.bugList;
-        }
+            let resEtaDate = this.bug.etaDate;
+            let resSubmitDate=this.bugList.submitOnDate;
+            if (resSubmitDate) {
+              let finalSubmitDate = resSubmitDate.split('T')[0];
+              this.bug.submitOnDate = finalSubmitDate;
+            }
+             if (resEtaDate) {
+                let finalEtaDate = resEtaDate.split('T')[0];
+                this.bug.etaDate = finalEtaDate;
+              }
+      }
         else{
           alert("Given Bug with title "+bugTitle+" is not available");
         }
       },
       error => {
         console.log(error);
-        alert(error.statusText);
+        alert("Error Happened!");
     }
     )
   }
   else{
-    alert('Specify title to get bug details.');
+    alert("Specify title to fetch bug details");
+
   }
 }
   updateBug() {
@@ -52,7 +63,7 @@ export class UpdateBugComponent implements OnInit {
       priority: (<HTMLInputElement>document.getElementById('priority')).value,
       status: (<HTMLInputElement>document.getElementById('status')).value,
       type: (<HTMLInputElement>document.getElementById('type')).value,
-      submitOnDate: (<HTMLInputElement>document.getElementById('submitOnDate')).valueAsDate,
+      submitOnDate: (<HTMLInputElement>document.getElementById('submitOnDate')).value,
       buildVersion: (<HTMLInputElement>document.getElementById('buildVersion')).value,
       projectId: (<HTMLInputElement>document.getElementById('projectId')).value,
       module: (<HTMLInputElement>document.getElementById('module')).value,
@@ -63,15 +74,14 @@ export class UpdateBugComponent implements OnInit {
     this.bugService.updateBug(bugId, updatedBody).subscribe(
       response => {
         console.log(response);
-        alert("Bug updated....");
+        alert("Bug updated!");
       },
       error => {
         console.log(error);
-        alert(error.statusText);
+        alert("Error Happened!");
 
       }
     )
-
 
 
   }

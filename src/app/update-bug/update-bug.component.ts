@@ -37,7 +37,7 @@ export class UpdateBugComponent implements OnInit {
           this.bug=this.bugArray[0];
            this.oldStatus= this.bugList.status;
            let resEtaDate = this.bug.etaDate;
-          let resSubmitDate=this.bugList.submitOnDate;
+          let resSubmitDate=this.bug.submitOnDate;
           if (resSubmitDate) {
             let finalSubmitDate = resSubmitDate.split('T')[0];
             this.bug.submitOnDate = finalSubmitDate;

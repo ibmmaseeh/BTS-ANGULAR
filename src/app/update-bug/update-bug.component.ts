@@ -10,10 +10,17 @@ import { STATUS } from "../STATUS";
 })
 export class UpdateBugComponent implements OnInit {
   //title: String = 'BugForm';
+  todayDate: Date= new Date();
   oldStatus: string;
   bug: Bug = new Bug();
   bugList:any;
   constructor(private bugService: BugService) { }
+  etaCheck(){
+    if(this.bug.etaDate<=this.todayDate.toDateString()){
+      alert('ETA Should not be past date');
+
+    }
+  }
   getBugName() {
     let endpointURL = 'http://localhost:8080/bug/';
     let bugTitle=(<HTMLInputElement>document.getElementById('title')).value;
@@ -87,6 +94,7 @@ else{
       },
 
       error => {
+
         if( this.oldStatus== 'NEW' && updatedBody.status!='ASSIGNED'){
           alert('Status not allowed, NEW bug can only be assigned.');
           return;
@@ -130,6 +138,7 @@ else{
           alert('A CLOSED bug cannot cannot be updated to status of VERIFIED or REOPEN or RETEST or PENDING RETEST, FIXED or OPEN or NEW or ASSIGNED');
           return;
         }
+        this.etaCheck()
 
 
 

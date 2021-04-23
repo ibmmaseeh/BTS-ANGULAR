@@ -9,6 +9,11 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script>
+      $(document).ready(function () {
+          $('select').selectpicker();
+      });
+  </script>
 
   <title>Search Bug</title>
 
@@ -17,31 +22,36 @@
 <body>
   <form class="jumbotron required" id="searchBug">
     <div class="form-group row">
+      <label for="colFormLabelLg" class="col-lg-2 col-form-label control-label">Title</label>
 
-      <div class="col-sm-6">
+      <div class="col">
         <input type="text" maxlength="200" class="form-control" placeholder="Enter Correct Bug Title" id="bugTitle" [(ngModel)]="bug.title"
           name="bugTitle" required>
       </div>
 
-      <div class="col-sm-6">
-        <select class="form-control" id="bugStatus" placeholder="Choose Bug Status"[(ngModel)]="bug.status" name="bugStatus" required>
-          <option disabled selected>Select Status</option>
-          <option>NEW</option>
-          <option>OPEN</option>
-          <option>ASSIGNED</option>
-          <option>FIXED</option>
-          <option>PENDING_RETEST</option>
-          <option>RETEST</option>
-          <option>REOPEN</option>
-          <option>VERIFIED</option>
-          <option>CLOSED</option>
-          <option>NOT_A_BUG</option>
-          <option>REJECTED</option>
-          <option>DUPLICATE</option>
-          <option>DEFERRED</option>
-          <option>COULDNT_REPRODUCE</option>
-          <option>NEED_MORE_INFORMATION</option>
-        </select>
+
+      <label for="colFormLabelLg" class="col-lg-2 col-form-label control-label">Status</label>
+
+      <div class="col">
+          <select class="selectpicker form-control" data-live-search="true" id="bugStatus"  [(ngModel)]="bug.status"
+          name="bugTitle"required>
+              <option value="" disabled selected>Select Option</option>
+              <option>NEW</option>
+              <option>OPEN</option>
+              <option>ASSIGNED</option>
+              <option>FIXED</option>
+              <option>PENDING_RETEST</option>
+              <option>RETEST</option>
+              <option>REOPEN</option>
+              <option>VERIFIED</option>
+              <option>CLOSED</option>
+              <option>NOT_A_BUG</option>
+              <option>REJECTED</option>
+              <option>DUPLICATE</option>
+              <option>DEFERRED</option>
+              <option>COULDNT_REPRODUCE</option>
+              <option>NEED_MORE_INFORMATION</option>
+          </select>
       </div>
 
 
@@ -79,8 +89,8 @@
           <ng-container *ngFor="let bug of bugList">
 
             <tr>
-              <td scope="col" style="border: 2px solid #000000;" id="titlewidth">{{bug.title|truncate:[20]}}</td>
-              <td scope="col" style="border: 2px solid #000000;">{{bug.description}}</td>
+              <td scope="col" style="border: 2px solid #000000;" id="titlewidth">{{bug.title|truncate:[20]}}<br><button type="button" style="margin-top: 10px;"   class="btn btn-outline-info btn-sm">Read More</button></td>
+              <td scope="col" style="border: 2px solid #000000;">{{bug.description|truncate:[20]}}<br><button type="button"  style="margin-top: 10px;" class="btn btn-outline-info btn-sm">Read More</button></td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.status|titlecase}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.priority|titlecase}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.type|titlecase}}</td>

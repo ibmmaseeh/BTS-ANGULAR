@@ -11,7 +11,9 @@ export class BugService {
   constructor(private http: HttpClient) { }
   saveBug(bug: Bug) {
     return this.http.post('http://localhost:8080/bug', bug, {
-      headers: { "content-type": 'application/json' }
+      headers: { "content-type": 'application/json' },responseType:'text'
+
+
     });
   }
 
@@ -22,11 +24,12 @@ export class BugService {
     return this.http.get(endpointURL, { headers: httpHeaders });
   }
 
-  // getBug(endpointURL) {
+  // getBug() {
+  //   let endpointURL = 'http://localhost:8080/bug/title/';
 
   //   const httpHeaders = new HttpHeaders();
   //   httpHeaders.append('content-type', 'application/json');
-  //   return this.http.get(endpointURL, { headers: httpHeaders });
+  //   return this.http.get('http://localhost:8080/bug/title/' + bugtitle, { headers: httpHeaders });
 
   // }
 
@@ -43,7 +46,7 @@ export class BugService {
 
   getBugByName(title: string) {
     const endpointURL = 'http://localhost:8080/bug/'
-    return this.http.get(endpointURL + 'title/' + title);
+    return this.http.get(endpointURL+ 'title/'  + title);
   }
   getBugByStatus(status: string) {
     const endpointURL = 'http://localhost:8080/bug/'
@@ -55,6 +58,13 @@ export class BugService {
     const endpointURL = 'http://localhost:8080/bug/' + bugId;
     return this.http.delete(endpointURL);
   }
+
+  // readBug(bugTitle){
+  //   const httpHeaders = new HttpHeaders();
+  //   httpHeaders.append('content-type', 'application/json');
+  //   return this.http.get('http://localhost:8080/bug/title'+ bugTitle, { headers: httpHeaders });
+
+  // }
 
 
 

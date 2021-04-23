@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { BugService } from '../bug.service';
 import { Bug } from '../Bug';
@@ -10,15 +9,15 @@ import { Bug } from '../Bug';
   styleUrls: ['./create-bug.component.css']
 })
 export class CreateBugComponent implements OnInit {
-  title: String = 'CreateBug';
+  title: String = 'BugForm';
   bug: Bug = new Bug();
 
 
   constructor(private bugService: BugService) { }
   saveBug() {
-    let createBug=(<HTMLInputElement>document.getElementById('createBug'))
-    if(!createBug.checkValidity()){
-      alert('form is invalid..!');
+    let createBug = (<HTMLInputElement>document.getElementById('createBug'))
+    if (!createBug.checkValidity()) {
+      alert('form is invalid');
       return;
     }
     const promise = this.bugService.saveBug(this.bug);

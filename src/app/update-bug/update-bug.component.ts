@@ -16,7 +16,7 @@ export class UpdateBugComponent implements OnInit {
     let endpointURL = 'http://localhost:8080/bug/';
     let bugTitle=(<HTMLInputElement>document.getElementById('title')).value;
     if (bugTitle) {
-      endpointURL = endpointURL + 'title/' + bugTitle;
+      endpointURL = endpointURL +'title/'+ bugTitle;
       const promise = this.bugService.getBugByName(bugTitle);
       promise.subscribe(response => {
         this.bugList = response;
@@ -37,17 +37,17 @@ export class UpdateBugComponent implements OnInit {
       else{
         alert("Given Bug with title "+bugTitle+" is not available");
       }
-      },
-      error => {
-        console.log(error);
-        alert("Error Happened!");
-    }
-    )
+    },
+    error => {
+      console.log(error);
+      alert("Error Happened!");
   }
-  else{
-    alert("Specify title to fetch bug details");
+  )
+}
+else{
+  alert("Specify title to fetch bug details");
 
-  }
+}
 }
   updateBug() {
     let updateBug = (<HTMLInputElement>document.getElementById('updateBug'))

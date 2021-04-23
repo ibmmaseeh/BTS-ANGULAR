@@ -9,11 +9,6 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script>
-      $(document).ready(function () {
-          $('select').selectpicker();
-      });
-  </script>
 
   <title>Search Bug</title>
 
@@ -22,7 +17,7 @@
 <body>
   <form class="jumbotron required" id="searchBug">
     <div class="form-group row">
-      <label for="colFormLabelLg" class="col-lg-2 col-form-label control-label">Title</label>
+      <label for="colFormLabelLg" class="col-lg-1 col-form-label control-label">Title :</label>
 
       <div class="col">
         <input type="text" maxlength="200" class="form-control" placeholder="Enter Correct Bug Title" id="bugTitle" [(ngModel)]="bug.title"
@@ -30,7 +25,7 @@
       </div>
 
 
-      <label for="colFormLabelLg" class="col-lg-2 col-form-label control-label">Status</label>
+      <label for="colFormLabelLg" class="col-lg-1 col-form-label control-label">Status :</label>
 
       <div class="col">
           <select class="selectpicker form-control" data-live-search="true" id="bugStatus"  [(ngModel)]="bug.status"
@@ -62,9 +57,6 @@
       </div>
 
     </div>
-    <!-- <div class="text-center " style="margin-top:50px">
-      <button type="button" class="btn btn-outline-primary form-control" (click)="getBugs()">Get all Bugs</button>
-    </div>-->
 
     <div class="table-responsive">
       <table class=" table table-bordered " style="border: 2px solid #000000; margin-top:50px">
@@ -87,10 +79,10 @@
         </thead>
         <tbody id="bugsTable" style="border: 2px solid #000000">
           <ng-container *ngFor="let bug of bugList">
-
+            <!-- TO DO implement function read in button-->
             <tr>
               <td scope="col" style="border: 2px solid #000000;" id="titlewidth">{{bug.title|truncate:[20]}}<br><button type="button" style="margin-top: 10px;"   class="btn btn-outline-info btn-sm">Read More</button></td>
-              <td scope="col" style="border: 2px solid #000000;">{{bug.description|truncate:[20]}}<br><button type="button"  style="margin-top: 10px;" class="btn btn-outline-info btn-sm">Read More</button></td>
+              <td scope="col" style="border: 2px solid #000000;">{{bug.description|truncate:[20]}}<br><button type="button"  style="margin-top: 10px;" class="btn btn-outline-info btn-sm" >Read More</button></td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.status|titlecase}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.priority|titlecase}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.type|titlecase}}</td>
@@ -100,11 +92,6 @@
               <td scope="col" style="border: 2px solid #000000;">{{bug.module}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.product}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.etaDate|date}}</td>
-              <!-- <td [hidden]="bug.expanded == true"><button (click)="keyfield.expanded = true">read more</button></td>
-              <td [@detailExpand]="bug.expanded ? 'expanded' : 'collapsed'">
-                  <p>{{keyfield.expandedContent}}</p>
-                  <button (click)="keyfield.expanded = false">read less</button>
-              </td> -->
               <td scope="col" style="border: 2px solid #000000;"><button type="button" class="btn btn-outline-danger" (click)='this.deleteBug(bug.id)'>Delete</button></td>
 
 

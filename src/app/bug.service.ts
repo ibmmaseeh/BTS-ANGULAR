@@ -38,10 +38,10 @@ export class BugService {
     return this.http.put(endpointURL, updatedBody);
   }
   getBugbyStatusAndTitle(status:string,title:string){
-    const endpointURL = 'http://localhost:8080/bug/search/' + title;
+    const endpointURL = 'http://localhost:8080/bug/search/'
     const httpHeaders = new HttpHeaders();
     httpHeaders.append('content-type', 'application/json');
-    return this.http.get(endpointURL+'?status='+status, { headers: httpHeaders });
+    return this.http.get(endpointURL+ title +'/'+ status, { headers: httpHeaders });
   }
 
   getBugByName(title: string) {

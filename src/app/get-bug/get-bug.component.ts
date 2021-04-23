@@ -19,6 +19,14 @@ export class GetBugComponent implements OnInit {
   bugArray: Bug[]=[];
   toggleEllipses:false;
 
+  // read(){
+  //   if(this.bug.description.length>20){
+  //     alert(this.bug.description);
+
+  //   }
+
+  // }
+
 
 
   deleteBug(bugId){
@@ -39,60 +47,10 @@ export class GetBugComponent implements OnInit {
       }
     )
   }
-
-  // getBug() {
-  //   let bugStatus = (<HTMLInputElement>document.getElementById('bugStatus')).value;
-  //   let bugTitle = (<HTMLInputElement>document.getElementById('bugTitle')).value;
-  //   let endpointURL = 'http://localhost:8080/bug/';
-
-  //   if (Object.values(STATUS).includes(bugStatus)) {
-
-  //     endpointURL = endpointURL + 'status/' + bugStatus;
-  //     this.bugService.getBug(endpointURL).subscribe(response => {
-  //       this.bugList = response;
-  //       if(response!=null){
-  //         console.log(response);
-  //         alert('Bug Found!')
-  //       }
-  //       else{
-  //        alert("Bug with given status " + bugStatus + "not found!!");
-  //       }
-
-  //     },
-  //       error => {
-  //         console.log(error);
-  //         alert("An Error has occured.");
-
-  //       }
-  //     )
-  //   }
-  //   else {
-  //     endpointURL = endpointURL + 'title/' + bugTitle;
-  //     this.bugService.getBug(endpointURL).subscribe(response => {
-  //       this.bugList = [response];
-  //       if (response!=null){
-  //         console.log(response);
-  //         alert('Bug Found!')
-  //       }
-  //       else{
-  //         alert("Bug with given title " + bugTitle + " not found!!");
-
-  //       }
-
-  //     },
-  //       error => {
-  //         console.log(error);
-  //         alert(error.statusText);
-
-  //       }
-  //     )
-  //   }
-  // }
-
   getBug() {
     let bugStatus = (<HTMLInputElement>document.getElementById('bugStatus')).value;
     let bugTitle = (<HTMLInputElement>document.getElementById('bugTitle')).value;
-    if (bugTitle && !status) {
+    if (bugTitle && !bugStatus) {
       if (bugTitle.trim()) {
         const promise = this.bugService.getBugByName(bugTitle);
         promise.subscribe(response => {
@@ -102,7 +60,7 @@ export class GetBugComponent implements OnInit {
             alert('Bug is found');
           }
           else {
-            alert("Record not found");
+            alert("Bug record with bug title not found");
           }
         },
           error => {
@@ -131,14 +89,16 @@ export class GetBugComponent implements OnInit {
         })
     }
     else if (bugTitle && bugStatus) {
-      const promise = this.bugService.getBugbyStatusAndTitle(bugTitle, bugStatus);
+      const promise = this.bugService.getBugbyStatusAndTitle(bugStatus, bugTitle);
       promise.subscribe(response => {
         this.bugList = response;
-        if (this.bugList.length) {
+        this.bugArray=this.bugList;
+        if (this.bugList.length>0) {
           this.bugArray = this.bugList;
+          alert("Bug Found")
         }
         else {
-          alert("No Bug with Name : " + bugTitle + " and Status : " + status + " found");
+          alert("No Bug with Name : " + bugTitle + " and Status : " + bugStatus + " found");
           this.bugArray = [];
         }
       },
@@ -170,25 +130,7 @@ export class GetBugComponent implements OnInit {
     )
    }
 
-// readBug(){
 
-//   let bugTitle = (<HTMLInputElement>document.getElementById('bugTitle')).value;
-//   let endpointURL = 'http://localhost:8080/bug/title'+ bugTitle;
-//   this.bugService.readBug(endpointURL).subscribe(response => {
-//          this.bugList = response;
-//          if(this.bug.title.length>10){
-
-//            alert(bugTitle);
-//          }
-
-// },
-// error => {
-//   console.log(error);
-//  alert(error.statusText);
-
-// }
-// )
-// }
 
 ngOnInit(): void {
     this.getBugs();

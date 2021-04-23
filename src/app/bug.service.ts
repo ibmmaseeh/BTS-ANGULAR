@@ -46,7 +46,7 @@ export class BugService {
 
   getBugByName(title: string) {
     const endpointURL = 'http://localhost:8080/bug/'
-    return this.http.get(endpointURL+ 'title/'  + title);
+    return this.http.get(endpointURL + title);
   }
   getBugByStatus(status: string) {
     const endpointURL = 'http://localhost:8080/bug/'

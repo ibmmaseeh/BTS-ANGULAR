@@ -14,6 +14,7 @@ export class UpdateBugComponent implements OnInit {
   oldStatus: string;
   bug: Bug = new Bug();
   bugList:any;
+  bugArray: Bug[]=[];
   constructor(private bugService: BugService) { }
   etaCheck(){
     if(this.bug.etaDate<=this.todayDate.toDateString()){
@@ -25,13 +26,15 @@ export class UpdateBugComponent implements OnInit {
     let endpointURL = 'http://localhost:8080/bug/';
     let bugTitle=(<HTMLInputElement>document.getElementById('title')).value;
     if (bugTitle) {
-      endpointURL = endpointURL +'title/'+ bugTitle;
+      endpointURL = endpointURL + bugTitle;
       const promise = this.bugService.getBugByName(bugTitle);
       promise.subscribe(response => {
         this.bugList = response;
         console.log(this.bugList);
-        if(this.bugList){
-          this.bug=this.bugList;
+        this.bugArray=this.bugList;
+        console.log(this.bugArray);
+        if(this.bugArray.length>0){
+          this.bug=this.bugArray[0];
            this.oldStatus= this.bugList.status;
            let resEtaDate = this.bug.etaDate;
           let resSubmitDate=this.bugList.submitOnDate;
@@ -43,7 +46,8 @@ export class UpdateBugComponent implements OnInit {
               let finalEtaDate = resEtaDate.split('T')[0];
               this.bug.etaDate = finalEtaDate;
             }
-    }
+          }
+
       else{
         alert("Given Bug with title "+bugTitle+" is not available");
       }

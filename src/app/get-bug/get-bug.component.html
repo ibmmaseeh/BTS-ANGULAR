@@ -61,7 +61,7 @@
 
     <div class="table-responsive">
       <table class=" table table-bordered " style="border: 2px solid #000000; margin-top:50px">
-        <thead >
+        <thead style="font-weight:bold;font-family: sans-serif;">
 
           <td scope="col" style="border: 2px solid black;"> Title </td>
           <td scope="col" style="border: 2px solid black;"> Description </td>
@@ -82,8 +82,11 @@
           <ng-container *ngFor="let bug of bugList">
             <!-- TO DO implement function read in button-->
             <tr>
-              <td scope="col" style="border: 2px solid #000000;" id="titlewidth">{{bug.title|truncate:[20]}}<br><button type="button" style="margin-top: 10px;"   class="btn btn-outline-info btn-sm">Read More</button></td>
-              <td scope="col" style="border: 2px solid #000000;">{{bug.description|truncate:[20]}}<br><button type="button"  style="margin-top: 10px;" class="btn btn-outline-info btn-sm" >Read More</button></td>
+              <td scope="col" style="border: 2px solid #000000;" id="titlewidth" >{{bug.title}}></td>
+              <td *ngIf="bug.description.length<15"  style="border: 2px solid #000000;"> {{bug.description}} </td>
+              <td  *ngIf="!(bug.description.length<15)" style="border: 2px solid #000000;"> {{bug.description | slice:0:15}}<sub><button
+                    class="btn btn-link btn-xs" (click)=showDescription(bug.description)>Read More</button></sub>
+              </td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.status|titlecase}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.priority|titlecase}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.type|titlecase}}</td>
@@ -93,8 +96,8 @@
               <td scope="col" style="border: 2px solid #000000;">{{bug.module}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.product}}</td>
               <td scope="col" style="border: 2px solid #000000;">{{bug.etaDate|date}}</td>
-              <td scope="col" style="border: 2px solid #000000;"><button type="button" class="btn btn-outline-danger" (click)='this.deleteBug(bug.id)'>Delete</button></td>
 
+              <td scope="col" style="border: 2px solid #000000;"><button type="button" class="btn btn-outline-danger" (click)='this.deleteBug(bug.id)'>Delete</button></td>
 
             </tr>
           </ng-container>
@@ -102,7 +105,37 @@
         </tbody>
 
       </table>
+      <div id='showmore' >
+        <div>
+          <button style="display:none" class="btn btn-link btn-lg" data-toggle="modal"
+            data-target="#myModalDescription" id='temp'>...</button>
+        </div>
+        <div class="modal fade" id="myModalDescription" role="dialog"   >
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header" >
+                <button type="button" class="close" data-dismiss="modal"></button>
+                <h4 class="modal-title">Description</h4>
+              </div>
+              <div class="modal-body" id='showDescription'>
+                <p></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+      </div>
     </div>
+
+
 
   </form>
 

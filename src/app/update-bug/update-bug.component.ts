@@ -11,7 +11,7 @@ import { STATUS } from "../STATUS";
 export class UpdateBugComponent implements OnInit {
   //title: String = 'BugForm';
   todayDate: Date= new Date();
-  oldStatus: string;
+  oldStatus: any;
   bug: Bug = new Bug();
   bugList:any;
   bugArray: Bug[]=[];
@@ -35,7 +35,7 @@ export class UpdateBugComponent implements OnInit {
         console.log(this.bugArray);
         if(this.bugArray.length>0){
           this.bug=this.bugArray[0];
-           this.oldStatus= this.bugList.status;
+           this.oldStatus= this.bug.status;
            let resEtaDate = this.bug.etaDate;
           let resSubmitDate=this.bug.submitOnDate;
           if (resSubmitDate) {
@@ -142,7 +142,7 @@ else{
           alert('A CLOSED bug cannot cannot be updated to status of VERIFIED or REOPEN or RETEST or PENDING RETEST, FIXED or OPEN or NEW or ASSIGNED');
           return;
         }
-        this.etaCheck()
+         this.etaCheck()
 
 
 

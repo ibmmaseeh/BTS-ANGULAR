@@ -33,6 +33,7 @@ const appRoutes: Routes  = [
     UpdateBugComponent,
     ContactUsComponent,
     TruncatePipe
+
   ],
   imports: [ RouterModule.forRoot(
     appRoutes,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { BugService } from '../bug.service';
 import { Bug } from '../Bug';
 import { STATUS } from '../STATUS';
@@ -17,15 +17,14 @@ export class GetBugComponent implements OnInit {
   searchElement: any;
   responseList: Boolean;
   bugArray: Bug[]=[];
-  toggleEllipses:false;
 
-  // read(){
-  //   if(this.bug.description.length>20){
-  //     alert(this.bug.description);
 
-  //   }
+  showDescription(description: string) {
+    document.getElementById('showDescription').innerHTML = description;
+    return document.getElementById('temp').click();
+  }
 
-  // }
+
 
 
 
@@ -53,6 +52,7 @@ export class GetBugComponent implements OnInit {
     if (bugTitle && !bugStatus) {
       if (bugTitle.trim()) {
         const promise = this.bugService.getBugByName(bugTitle);
+
         promise.subscribe(response => {
           this.bugList = response;
           this.bugArray=this.bugList;
